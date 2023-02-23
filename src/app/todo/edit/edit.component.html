@@ -1,0 +1,19 @@
+<h1>Edycja zadania</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form (ngSubmit)="editDescription()">
+            <div class="form-group mt-2">
+                <input name="description" class="form-control" [(ngModel)]="Position.Description" placeholder="np. dodać następne testy jednostkowe" />
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Edytuj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<p class="mt-5">
+    <a routerLink="/">Powrót do listy zadań</a>
+</p>

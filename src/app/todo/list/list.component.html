@@ -1,0 +1,28 @@
+<h1 class="mt-2">Twoje zadania</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Zadanie</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let position of Repo.ToDoPositionArray">
+            <td>
+                    {{ position.Description }}
+            </td>
+            <td>
+                    <a [routerLink]="['/edit', position.Id]">✏️</a>
+                    |
+                    <a [routerLink]="['/delete', position.Id]">🗑</a>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<p>
+    <a routerLink="/create" class="btn btn-primary mt-2">Dodaj zadanie</a>
+</p>

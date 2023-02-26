@@ -11,17 +11,20 @@ import { Repo } from '../repo';
 export class DeleteComponent {
 
 	private id : number = -1;
+	Position! : ToDoPosition;
 
 	constructor (private repo : Repo, private route : ActivatedRoute,
 		private router : Router){
-
-		this.id = Number(route.snapshot.paramMap.get("id"));
+			this.id = Number(route.snapshot.paramMap.get("id"));
+			let position = repo.ToDoPositionArray.find(x => x.Id == this.id)
+			if (position !== undefined){
+				this.Position = position;
+			}
 	}
 
 	onSubmit(){
-		let position : ToDoPosition | undefined = this.repo.ToDoPositionArray.find(x => x.Id == this.id);
-		if (position !== undefined){
-			let positionIndex : number = this.repo.ToDoPositionArray.indexOf(position);
+		if (this.Position !== undefined){
+			let positionIndex : number = this.repo.ToDoPositionArray.indexOf(this.Position);
 			this.repo.ToDoPositionArray.splice(positionIndex, 1);
 
 			this.router.navigateByUrl("/");

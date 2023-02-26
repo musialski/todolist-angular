@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { clippingParents } from '@popperjs/core';
 import { ToDoPosition } from '../models/todo-position';
 import { Repo } from '../repo';
 
@@ -15,7 +16,9 @@ export class CreateComponent {
 	constructor(private repo : Repo, private router : Router) { }
 
 	onSubmit(){
-		let maxId : number = Math.max(this.repo.ToDoPositionArray.map(x => x.Id)[0]);
+		let maxId : number = Math.max.apply(Math, this.repo.ToDoPositionArray.map(x => x.Id));
+
+		console.log(`maxId = ${maxId}`);
 
 		let position : ToDoPosition = new ToDoPosition(maxId + 1, this.Description);
 		this.repo.ToDoPositionArray.push(position);
